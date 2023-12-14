@@ -1,0 +1,9 @@
+python-dotenv
+pandas
+numpy
+scikit-learn
+lightgbm
+feather-format
+seaborn
+xgboost
+optbinning

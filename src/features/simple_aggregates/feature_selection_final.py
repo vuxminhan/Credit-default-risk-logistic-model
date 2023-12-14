@@ -4,12 +4,12 @@ import sys
 import pickle
 sys.path.append(os.getcwd())
 from src.helpers.utils import *
-from src.features.application_train import application_train
-from src.features.bureau_bureau_balance import bureau_bb
-from src.features.instalment_payment import installments_payments
-from src.features.pos_cash_balance import pos_cash_balance
-from src.features.credit_card_balance import credit_card_balance
-from src.features.previous_application import previous_application
+from src.features.simple_aggregates.application_train import application_train
+from src.features.simple_aggregates.bureau_bureau_balance import bureau_bb
+from src.features.simple_aggregates.instalment_payment import installments_payments
+from src.features.simple_aggregates.pos_cash_balance import pos_cash_balance
+from src.features.simple_aggregates.credit_card_balance import credit_card_balance
+from src.features.simple_aggregates.previous_application import previous_application
 
 def pre_processing_and_combine():
 
