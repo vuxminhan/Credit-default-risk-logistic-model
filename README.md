@@ -6,9 +6,9 @@
   * Nhan Yen Trang
   * Le Ngoc Anh
   
-  [Link to Kaggle data about Home Credit Default Risk ](https://www.kaggle.com/competitions/home-credit-default-risk)
+  [Link to Kaggle notebook](https://www.kaggle.com/competitions/home-credit-default-risk)
 
-  [Link to Data Preprocessed File](https://drive.google.com/drive/folders/1CPOJGypsMPJE9vf6qe8UIDEi4JaIm__m?usp=sharing)
+  [Link to Data File](https://drive.google.com/drive/folders/1CPOJGypsMPJE9vf6qe8UIDEi4JaIm__m?usp=sharing)
   
   [Link to Slide](https://www.canva.com/design/DAF22dYdw2w/nPVxsAnB8yGHXeCyvZDYNQ/edit)
   
