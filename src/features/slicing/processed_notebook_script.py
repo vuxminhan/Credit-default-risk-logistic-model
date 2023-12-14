@@ -43,7 +43,7 @@ cc_balance_aggregated_overall = cc_balance.groupby('SK_ID_PREV').agg(overall_agg
 cc_balance_aggregated_overall.columns = ['_'.join(ele).upper() for ele in cc_balance_aggregated_overall.columns]
 
 #-> đoạn này encoding biến categorical sau rồi groupby bằng SK_ID_CURR
-cc_aggregated = pd.read_csv('data/process/binned
+cc_aggregated = pd.read_csv("data/interim/binned_numerical_features/processed_credit_card_balance.csv")
 cc_aggregated = cc_aggregated.groupby('SK_ID_CURR', as_index = False).mean()
 
 
@@ -73,6 +73,9 @@ installments_payments_agg_prev = installments_payments_agg_prev.merge(group_firs
 
 
 # bureau
+bureau = pd.read_csv('data/raw/dseb63_bureau.csv')
+bureau_balance = pd.read_csv('data/raw/dseb63_bureau_balance.csv')
+bureau_merged = bureau.merge(bureau_balance, on = 'SK_ID_BUREAU', how = 'outer')
 aggregations_CREDIT_ACTIVE = {'AMT_CREDIT_MAX_OVERDUE': ['max','sum'],'AMT_CREDIT_SUM_OVERDUE': ['max','sum'], 'AMT_ANNUITY' : ['mean','sum','max'] }
 categories_to_aggregate_on = ['Closed','Active']
 

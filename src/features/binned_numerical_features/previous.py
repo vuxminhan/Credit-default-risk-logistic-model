@@ -80,7 +80,7 @@ previous_agg['PREV_APPROVED_PERC'] = grouped_previous['NAME_CONTRACT_STATUS_Appr
 previous_agg['PREV_REFUSED_PERC'] = grouped_previous['NAME_CONTRACT_STATUS_Refused'].mean()
 
 # Target
-target = pd.read_csv('data/processed/binned_numerical_features/target.csv')
+target = pd.read_csv('data/interim/binned_numerical_features/target.csv')
 target.set_index('SK_ID_CURR', inplace=True)
 y_train = target[target.index.isin(previous_agg.index)]['TARGET']
 
@@ -128,4 +128,4 @@ print('Number of selected features: {}'.format(len(selected_features)))
 previous = pd.concat([previous_train_binned, previous_test_binned], axis=0)
 
 # Save data
-previous.to_csv('binned_numerical_features/processed_previous_application.csv')
+previous.to_csv('data/interim/binned_numerical_features/processed_previous_application.csv')

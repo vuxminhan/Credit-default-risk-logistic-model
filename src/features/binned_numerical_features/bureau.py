@@ -9,34 +9,28 @@ from sklearn.metrics import roc_auc_score
 from sklearn.preprocessing import StandardScaler
 
 def create_feature(df):
-    new_features = {
-    'CREDIT_DURATION': df['DAYS_CREDIT'] - df['DAYS_CREDIT_ENDDATE'],
-    'ENDDATE_DIF': df['DAYS_CREDIT_ENDDATE'] - df['DAYS_ENDDATE_FACT'],
-    'DEBT_PERCENTAGE': df['AMT_CREDIT_SUM'] / df['AMT_CREDIT_SUM_DEBT'],
-    'DEBT_CREDIT_DIFF': df['AMT_CREDIT_SUM'] - df['AMT_CREDIT_SUM_DEBT'],
-    'CREDIT_TO_ANNUITY_RATIO': df['AMT_CREDIT_SUM'] / df['AMT_ANNUITY'],
-    'BUREAU_CREDIT_FACT_DIFF': df['DAYS_CREDIT'] - df['DAYS_ENDDATE_FACT'],
-    'BUREAU_CREDIT_ENDDATE_DIFF': df['DAYS_CREDIT'] - df['DAYS_CREDIT_ENDDATE'],
-    'BUREAU_CREDIT_DEBT_RATIO': df['AMT_CREDIT_SUM_DEBT'] / df['AMT_CREDIT_SUM'],
-    'BUREAU_IS_DPD': df['CREDIT_DAY_OVERDUE'] > 0,
-    'BUREAU_IS_DPD_OVER60': df['CREDIT_DAY_OVERDUE'] > 60,
-    'BUREAU_IS_DPD_OVER120': df['CREDIT_DAY_OVERDUE'] > 120,
-    'UTILIZATION_RATIO': df['AMT_CREDIT_SUM_DEBT'] / df['AMT_CREDIT_SUM_LIMIT'],
-    # 'NEW_LOANS_IN_1YEAR': (
-    #         df["DAYS_CREDIT_UPDATE"] >= datetime.today() - timedelta(days=365)
-    #     ).astype(int),
+    # Calculate new features
+    df['CREDIT_DURATION'] = df['DAYS_CREDIT'] - df['DAYS_CREDIT_ENDDATE']
+    df['ENDDATE_DIF'] = df['DAYS_CREDIT_ENDDATE'] - df['DAYS_ENDDATE_FACT']
+    df['DEBT_PERCENTAGE'] = df['AMT_CREDIT_SUM'] / df['AMT_CREDIT_SUM_DEBT']
+    df['DEBT_CREDIT_DIFF'] = df['AMT_CREDIT_SUM'] - df['AMT_CREDIT_SUM_DEBT']
+    df['CREDIT_TO_ANNUITY_RATIO'] = df['AMT_CREDIT_SUM'] / df['AMT_ANNUITY']
+    df['BUREAU_CREDIT_FACT_DIFF'] = df['DAYS_CREDIT'] - df['DAYS_ENDDATE_FACT']
+    df['BUREAU_CREDIT_ENDDATE_DIFF'] = df['DAYS_CREDIT'] - df['DAYS_CREDIT_ENDDATE']
+    df['BUREAU_CREDIT_DEBT_RATIO'] = df['AMT_CREDIT_SUM_DEBT'] / df['AMT_CREDIT_SUM']
+    df['BUREAU_IS_DPD'] = df['CREDIT_DAY_OVERDUE'] > 0
+    df['BUREAU_IS_DPD_OVER60'] = df['CREDIT_DAY_OVERDUE'] > 60
+    df['BUREAU_IS_DPD_OVER120'] = df['CREDIT_DAY_OVERDUE'] > 120
+    df['UTILIZATION_RATIO'] = df['AMT_CREDIT_SUM_DEBT'] / df['AMT_CREDIT_SUM_LIMIT']
 
-    # DAYS_CREDIT_mean
-    'DAYS_CREDIT_mean': df.groupby('SK_ID_CURR')['DAYS_CREDIT'].mean(),
-    # last_active_DAYS_CREDIT
-    'last_active_DAYS_CREDIT': df.groupby('SK_ID_CURR')['DAYS_CREDIT'].last(),
-    # BUREAU_AVG_LOAN_12M
-    'BUREAU_AVG_LOAN_12M': df.groupby('SK_ID_CURR')['DAYS_CREDIT'].rolling(window=12).mean(),
-    # BUREAU_PCT_HIGH_DEBT_RATIO
-    'BUREAU_PCT_HIGH_DEBT_RATIO': (df['AMT_CREDIT_SUM_DEBT'] > 0.5 * df['AMT_CREDIT_SUM']).mean(),
-    }
+    # Calculate mean and rolling mean features using groupby
+    df['DAYS_CREDIT_mean'] = df.groupby('SK_ID_CURR')['DAYS_CREDIT'].transform('mean')
+    df['last_active_DAYS_CREDIT'] = df.groupby('SK_ID_CURR')['DAYS_CREDIT'].transform('last')
+    df['BUREAU_AVG_LOAN_12M'] = df.groupby('SK_ID_CURR')['DAYS_CREDIT'].rolling(window=12).mean().reset_index(level=0, drop=True)
 
-    df = pd.concat([df, pd.DataFrame(new_features)], axis=1)
+    # Calculate percentage of high debt ratio
+    df['BUREAU_PCT_HIGH_DEBT_RATIO'] = (df['AMT_CREDIT_SUM_DEBT'] > 0.5 * df['AMT_CREDIT_SUM']).mean()
+
     return df
 
 # Load data
@@ -84,7 +78,7 @@ bureau_agg['BUR_COUNT'] = bureau.groupby('SK_ID_CURR').size()
 print('After aggregation: {}'.format(bureau_agg.shape))
 
 # Target
-target = pd.read_csv('data/processed/binned_numerical_features/target.csv')
+target = pd.read_csv('data/interim/binned_numerical_features/target.csv')
 target.set_index('SK_ID_CURR', inplace=True)
 y_train = target[target.index.isin(bureau_agg.index)]['TARGET']
 
@@ -124,4 +118,4 @@ bureau_test = bureau_test_binned[selected_features]
 bureau = pd.concat([bureau_train, bureau_test], axis=0)
 
 # Save
-bureau.to_csv('data/binned_numerical_features/processed_bureau.csv')
+bureau.to_csv('data/interim/binned_numerical_features/processed_bureau.csv')
