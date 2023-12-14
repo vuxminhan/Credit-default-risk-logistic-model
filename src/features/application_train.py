@@ -8,10 +8,8 @@ from src.helpers.utils import *
 def application_train(df,test_df):
     
     df = pd.concat([df,test_df]).reset_index()
-    print(df['TARGET'].isnull().sum())
 #     df = df[df['CODE_GENDER'] != 'XNA']
     df.loc[df['CODE_GENDER'] == 'XNA', 'CODE_GENDER'] = 'F'
-    print(df['TARGET'].isnull().sum())
     lbe = LabelEncoder()
 
     for col in ['CODE_GENDER', 'FLAG_OWN_CAR', 'FLAG_OWN_REALTY']:
@@ -68,9 +66,7 @@ def application_train(df,test_df):
         
     columns_to_remove = ['AMT_REQ_CREDIT_BUREAU_DAY', 'AMT_REQ_CREDIT_BUREAU_HOUR', 'AMT_REQ_CREDIT_BUREAU_MON', 'AMT_REQ_CREDIT_BUREAU_WEEK']
     df.drop(columns=columns_to_remove, inplace=True)
-    print(df['TARGET'].isnull().sum())
     df = pd.get_dummies(df, dummy_na = True)
-    print(df['TARGET'].isnull().sum())
     df['DAYS_EMPLOYED'].replace(365243, np.nan, inplace = True)
     df.loc[df['AMT_REQ_CREDIT_BUREAU_QRT'] > 10, 'AMT_REQ_CREDIT_BUREAU_QRT'] = np.nan
     df.loc[df['OBS_30_CNT_SOCIAL_CIRCLE'] > 40, 'OBS_30_CNT_SOCIAL_CIRCLE'] = np.nan
@@ -172,7 +168,7 @@ def application_train(df,test_df):
     df.rename(columns={"APP_SK_ID_CURR":"SK_ID_CURR"}, inplace = True)
 
     df.rename(columns={"APP_TARGET":"TARGET"}, inplace = True)
-    print(df['TARGET'].isnull().sum())
+
     return df
 
 if __name__ == "__main__":

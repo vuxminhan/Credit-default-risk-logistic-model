@@ -1,34 +1,52 @@
 # Now you can import utils
+import os
+import sys
+import pickle
+sys.path.append(os.getcwd())
 from src.helpers.utils import *
-from src.features.01_application_train import 
+from src.features.application_train import application_train
+from src.features.bureau_bureau_balance import bureau_bb
+from src.features.instalment_payment import installments_payments
+from src.features.pos_cash_balance import pos_cash_balance
+from src.features.credit_card_balance import credit_card_balance
+from src.features.previous_application import previous_application
 
 def pre_processing_and_combine():
 
     
     with timer("Process application train"):
-        df = application_train()
+        train_df = pd.read_csv('data/raw/dseb63_application_train.csv')
+        test_df = pd.read_csv('data/raw/dseb63_application_test.csv')
+    
+        df = application_train(train_df, test_df)
         print("application train & test shape:", df.shape)
         
     
     with timer("Bureau and Bureau Balance"):
-        bureau_and_bb_agg = bureau_bb()
+        bureau = pd.read_csv('data/raw/dseb63_bureau.csv')
+        bereau_balance = pd.read_csv('data/raw/dseb63_bureau_balance.csv')
+        bureau_and_bb_agg = bureau_bb(bereau_balance, bureau)
         print("Bureau and Bureau Balance:", bureau_and_bb_agg.shape)
         
     with timer("Installment Payments"):
-        agg_list_previous_application, ins_agg = installments_payments()
+        ins = pd.read_csv('data/raw/dseb63_installments_payments.csv')
+        agg_list_previous_application, ins_agg = installments_payments(ins)
         print("Installment Payments:", ins_agg.shape)    
     
     with timer("Pos Cash Balance"):
-        agg_list_previous_application, pos_agg = pos_cash_balance(agg_list_previous_application)
+        pos = pd.read_csv('data/raw/dseb63_POS_CASH_balance.csv')
+        agg_list_previous_application, pos_agg = pos_cash_balance(agg_list_previous_application, pos)
         print("Pos Cash Balance:", pos_agg.shape)  
         
     
     with timer("Credit Card Balance"):
-        CCB_agg = credit_card_balance()
+        CCB = pd.read_csv('data/raw/dseb63_credit_card_balance.csv')
+        CCB_agg = credit_card_balance(CCB)
         print("Credit Card Balance:", CCB_agg.shape) 
     
     with timer("previous_application"):
-        prev_agg_list, df_prev = previous_application(agg_list_previous_application)
+        prev_app = pd.read_csv('data/raw/dseb63_previous_application.csv')
+        prev_agg_list, df_prev = previous_application(prev_app, agg_list_previous_application)
         print("previous_application:", df_prev.shape) 
         
         
@@ -53,5 +71,5 @@ def pre_processing_and_combine():
     
 with timer("Preprocessing Time"):
     all_data = pre_processing_and_combine()
-    
-    
+    with open('data/processed/all_data.pkl', 'wb') as f:
+        pickle.dump(all_data, f)
