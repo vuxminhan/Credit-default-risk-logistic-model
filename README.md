@@ -40,34 +40,29 @@ Project Organization
             └── train_pipeline.py
 
   ### Assigned work:
-  * Nguyen Minh Duc: 
-    - EDA:<br /> 
-      * 02_Previous_application
-      * 05_POS_Cash_balance 
+  * Vu Minh An: 
+    - Modelling:<br /> 
     - Feature Engineer: <br />
-      * 01_application_train
-      * 02_Previous_application 
-      * 05_POS_Cash_balance 
-      * 08_Feature Selection Final (Merge data and Feature ) 
-  * Nguyen Ngoc Dat:
+      * Main tables: Application_train, Application_test
+      * Feature Selection (Merge data and Feature)
+    - Report
+  * Nhan Yen Trang:
     - EDA:<br />
-      * 03_Bureau
-      * 04_Bureau_balance
+      * Main tables: Application_train, Application_test
+      * Bureau
+      * Bureau_balance
     - Feature Engineer: <br />
-      * 03_Bureau
-      * 04_Bureau_balance
-      * 08_Feature Selection Final (handle outliners)
-  * Le Quoc Minh:
+       * Bureau
+       * Bureau_balance
+       * credit_card_balance
+    - Slides
+  * Le Ngoc Anh:
     - EDA:<br />
-      * 01_application_train 
+      * previous_application
+      * instalment_payment
+      * POS_cash
+      * credit_card_balance
     - Feature Engineer: <br />
-      * 01_application_train 
-      * 08_Feature Selection Final (handle outliners)
-  * Le Huy Phong:
-    - EDA: <br />
-      * 06_instalment_payment
-      * 07_credit_card_balance 
-    - Feature Engineer: <br />
-      * 06_instalment_payment
-      * 07_credit_card_balance 
-    - Slide
+      * previous_application
+      * instalment_payment
+      * POS_cash
