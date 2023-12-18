@@ -1,3 +1,12 @@
+python-dotenv
+pandas
+numpy
+scikit-learn
+lightgbm
+feather-format
+seaborn
+xgboost
+optbinning
 absl-py==1.4.0
 certifi==2021.5.30
 cycler==0.11.0

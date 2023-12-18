@@ -157,7 +157,7 @@ num_folds = 5
 
 csvname_li = [
     'dseb63_bureau',
-    #'bureau_balance',
+    #'dseb63_bureau_balance',
     'dseb63_previous_application',
     'dseb63_installments_payments',
     'dseb63_credit_card_balance',
