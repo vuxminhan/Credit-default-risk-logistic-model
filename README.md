@@ -72,3 +72,5 @@ Project Organization
       * previous_application
       * instalment_payment
       * POS_cash
+    - Slides
+      
