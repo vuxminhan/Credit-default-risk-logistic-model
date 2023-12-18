@@ -43,10 +43,12 @@ Project Organization
 
   ### Assigned work:
   * Vu Minh An: 
-    - Modelling:<br /> 
+    - Modelling:<br />
+      * Logistic Regression
     - Feature Engineer: <br />
       * Main tables: Application_train, Application_test
-      * Feature Selection (Merge data and Feature)
+      * Feature Selection (Merge data and Feature/Feature importance using Lightgbm)
+      * Weight of evidence/nested model/lead lag/simple aggregation
     - Report
   * Nhan Yen Trang:
     - EDA:<br />
