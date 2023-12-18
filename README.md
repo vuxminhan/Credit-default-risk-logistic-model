@@ -9,8 +9,10 @@
   [Link to Kaggle notebook](https://www.kaggle.com/competitions/home-credit-default-risk)
 
   [Link to Data File](https://drive.google.com/drive/folders/1CPOJGypsMPJE9vf6qe8UIDEi4JaIm__m?usp=sharing)
+
+  [Link to Report](https://docs.google.com/document/d/18R21mAvv06bSUkkNcD8dnkoOMuYpm_5JIm3BxF-tPKc/edit?usp=sharing)
   
-  [Link to Slide](https://www.canva.com/design/DAF22dYdw2w/nPVxsAnB8yGHXeCyvZDYNQ/edit)
+  [Link to Slide](https://www.canva.com/design/DAF3Ajr887k/vdd1MevYZenh68JN2iCk4g/edit?utm_content=DAF3Ajr887k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
   
 Project Organization
 ------------
