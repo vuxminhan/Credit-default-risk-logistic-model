@@ -42,7 +42,8 @@ Project Organization
             └── train_pipeline.py
 
   ### Assigned work:
-  * Vu Minh An: 
+  * Vu Minh An:
+    - Main idea
     - Modelling:<br />
       * Logistic Regression
     - Feature Engineer: <br />
@@ -56,6 +57,7 @@ Project Organization
       * Bureau
       * Bureau_balance
     - Feature Engineer: <br />
+       * Application_train|test
        * Bureau
        * Bureau_balance
        * credit_card_balance
