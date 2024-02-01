@@ -1,18 +1,14 @@
-# Data-Preparation-Group-5
+## Home Credit makes use of a variety of alternative data to predict their clients' repayment abilities
+### This repo present a classical and explainable approach using Logistic Regression model combined with data engineering to predict client default 
 
-### This is the notebook for final EDA project by Group 5, DSEB K63, NEU
-  
-  * Vu Minh An ( Group leader )
-  * Nhan Yen Trang
-  * Le Ngoc Anh
   
   [Link to Kaggle notebook](https://www.kaggle.com/code/vuxminhan/home-credit-risk-project-final)
 
   [Link to Data File](https://drive.google.com/drive/folders/1CPOJGypsMPJE9vf6qe8UIDEi4JaIm__m?usp=sharing)
 
-  [Link to Report](https://docs.google.com/document/d/18R21mAvv06bSUkkNcD8dnkoOMuYpm_5JIm3BxF-tPKc/edit?usp=sharing)
+  [Link to Report](https://docs.google.com/document/d/1krnUQGKT-X_8ghDj6qU7QLddtmRhCt2c/edit?usp=sharing&ouid=104574113477201047691&rtpof=true&sd=true)
   
-  [Link to Slide](https://www.canva.com/design/DAF3Ajr887k/vdd1MevYZenh68JN2iCk4g/edit?utm_content=DAF3Ajr887k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+  [Link to Slide](https://drive.google.com/file/d/19yLAoLRlGoISugTgeAcIOiit7dN5-09S/view?usp=sharing)
   
 Project Organization
 ------------
@@ -40,37 +36,3 @@ Project Organization
         └── pipelines      <- Scripts for data processing and model training pipelines.
             ├── predict_pipeline.py
             └── train_pipeline.py
-
-  ### Assigned work:
-  * Vu Minh An:
-    - Main idea
-    - Modelling:<br />
-      * Logistic Regression
-    - Feature Engineer: <br />
-      * Main tables: Application_train, Application_test
-      * Feature Selection (Merge data and Feature/Feature importance using Lightgbm)
-      * Weight of evidence/nested model/lead lag/simple aggregation
-    - Report
-  * Nhan Yen Trang:
-    - EDA:<br />
-      * Main tables: Application_train, Application_test
-      * Bureau
-      * Bureau_balance
-    - Feature Engineer: <br />
-       * Application_train|test
-       * Bureau
-       * Bureau_balance
-       * credit_card_balance
-    - Slides
-  * Le Ngoc Anh:
-    - EDA:<br />
-      * previous_application
-      * instalment_payment
-      * POS_cash
-      * credit_card_balance
-    - Feature Engineer: <br />
-      * previous_application
-      * instalment_payment
-      * POS_cash
-    - Slides
-      
